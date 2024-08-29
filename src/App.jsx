@@ -19,17 +19,18 @@ function App() {
                 <div className="flex">
                     {
                         menuItems.map((i) => (
-                            <button onClick={() => setActiveTab(i)} key={i} className={`menu-items cursor-pointer mr-8`}>
-                                <div className={`${activeTab===i ? "active-tab" : ""}`}>{i}</div>
-                                <div className={`${activeTab===i ? "bg-[#4B40EE]" : "bg-[#EFF1F3]"} h-[3px] mt-4`}></div>
+                            <button onClick={() => setActiveTab(i)} key={i} className={`menu-items cursor-pointer mr-5`}>
+                                <div className={`${activeTab===i ? "active-tab" : ""} text-center`}>{i}</div>
+                                <div className={`${activeTab===i ? "bg-[#4B40EE]" : ""} px-10 h-[3px] mt-4`}></div>
                             </button>
                         ))
                     }
                 </div>
-                <div className="h-[3px] w-full bg-[#EFF1F3] -z-10 -mt-[3px]"></div>
+                <div className="h-[3px] bg-[#EFF1F3]"></div>
+                {/* <div className="h-[3px] w-full bg-[#EFF1F3] -z-10 -mt-[3px]"></div> */}
             </div>
             <div>
-                
+
             </div>
         </div>
 	);
