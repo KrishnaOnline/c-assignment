@@ -78,6 +78,45 @@ body {
     color: #1A243A;
 }
 
+.actions {
+    color: #6F7177;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22.77px;
+    text-align: left;
+    width: 83px;
+    height: 23px;
+    top: 330px;
+    left: 94px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.range-items {
+    color: #6F7177;
+    font-size: 18px;
+    font-weight: 400;
+    width: 49px;
+    height: 33px;
+    line-height: 22.77px;
+    text-align: left;    
+}
+
+.active-range {
+    color: #FFFFFF;
+    background-color: #4B40EE;
+}
+
+.chart-area {
+    width: 839px;
+    height: 343px;
+    top: 386px;
+    left: 60px;
+    gap: 0px;
+    border-radius: 5px 0px 0px 0px;
+    opacity: 0px;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
