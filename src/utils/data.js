@@ -26,99 +26,64 @@
 // ];
 
 const allData = [
-	// 2024 - August
-	{ date: "2024-08-30", value: 64012.56 },
-	{ date: "2024-08-29", value: 63578.34 },
-	{ date: "2024-08-28", value: 63150.87 },
-	{ date: "2024-08-27", value: 63210.48 },
-	{ date: "2024-08-26", value: 63630.54 },
-	{ date: "2024-08-25", value: 64025.65 },
-	{ date: "2024-08-24", value: 63850.12 },
-	{ date: "2024-08-23", value: 64075.38 },
-	{ date: "2024-08-22", value: 63915.67 },
-	{ date: "2024-08-21", value: 63600.29 },
-	{ date: "2024-08-20", value: 63189.72 },
-	{ date: "2024-08-19", value: 63567.39 },
-	{ date: "2024-08-18", value: 63412.48 },
-	{ date: "2024-08-17", value: 63315.24 },
-	{ date: "2024-08-16", value: 63954.76 },
-	{ date: "2024-08-15", value: 64078.12 },
-	{ date: "2024-08-14", value: 63550.82 },
-	{ date: "2024-08-13", value: 63020.37 },
-	{ date: "2024-08-12", value: 63425.19 },
-	{ date: "2024-08-11", value: 63215.89 },
-	{ date: "2024-08-10", value: 63579.45 },
-
-	// 2024 - July
-	{ date: "2024-07-31", value: 63045.32 },
-	{ date: "2024-07-30", value: 63125.45 },
-	{ date: "2024-07-29", value: 63250.81 },
-	{ date: "2024-07-28", value: 63480.91 },
-	{ date: "2024-07-27", value: 63015.28 },
-	{ date: "2024-07-26", value: 63500.14 },
-	{ date: "2024-07-25", value: 63320.87 },
-	{ date: "2024-07-24", value: 63750.99 },
-	{ date: "2024-07-23", value: 63150.34 },
-	{ date: "2024-07-22", value: 63000.78 },
-	{ date: "2024-07-21", value: 62978.44 },
-	{ date: "2024-07-20", value: 63020.18 },
-	{ date: "2024-07-19", value: 63110.59 },
-	{ date: "2024-07-18", value: 63215.12 },
-	{ date: "2024-07-17", value: 63530.41 },
-	{ date: "2024-07-16", value: 63840.75 },
-	{ date: "2024-07-15", value: 63025.34 },
-	{ date: "2024-07-14", value: 63110.56 },
-	{ date: "2024-07-13", value: 63450.38 },
-	{ date: "2024-07-12", value: 63560.79 },
-
-	// 2024 - March to June
-	{ date: "2024-06-30", value: 63500.34 },
-	{ date: "2024-05-31", value: 64015.79 },
-	{ date: "2024-04-30", value: 64500.19 },
-	{ date: "2024-03-31", value: 65020.92 },
-	{ date: "2024-03-30", value: 64950.38 },
-
-	// 2023 - Full Year
-	{ date: "2023-12-31", value: 66500.78 },
-	{ date: "2023-11-30", value: 65512.45 },
-	{ date: "2023-10-31", value: 66050.89 },
-	{ date: "2023-09-30", value: 65200.56 },
-	{ date: "2023-08-31", value: 65589.67 },
-	{ date: "2023-07-31", value: 64500.12 },
-	{ date: "2023-06-30", value: 63200.75 },
-	{ date: "2023-05-31", value: 63500.89 },
-	{ date: "2023-04-30", value: 64000.23 },
-	{ date: "2023-03-31", value: 63000.56 },
-	{ date: "2023-02-28", value: 62500.67 },
-	{ date: "2023-01-31", value: 62000.12 },
-
-	// 2022 - Full Year
-	{ date: "2022-12-31", value: 62012.67 },
-	{ date: "2022-11-30", value: 61500.89 },
-	{ date: "2022-10-31", value: 61015.45 },
-	{ date: "2022-09-30", value: 60500.32 },
-	{ date: "2022-08-31", value: 60078.43 },
-	{ date: "2022-07-31", value: 59500.89 },
-	{ date: "2022-06-30", value: 59015.54 },
-	{ date: "2022-05-31", value: 58000.78 },
-	{ date: "2022-04-30", value: 57500.23 },
-	{ date: "2022-03-31", value: 57012.45 },
-	{ date: "2022-02-28", value: 56500.67 },
-	{ date: "2022-01-31", value: 56000.12 },
-
-	// Max data (covering multiple years)
-	{ date: "2021-12-31", value: 55500.45 },
-	{ date: "2021-11-30", value: 55000.89 },
-	{ date: "2021-10-31", value: 54500.34 },
-	{ date: "2021-09-30", value: 54015.23 },
-	{ date: "2021-08-31", value: 53500.12 },
-	{ date: "2021-07-31", value: 53000.78 },
-	{ date: "2021-06-30", value: 52500.89 },
-	{ date: "2021-05-31", value: 52000.67 },
-	{ date: "2021-04-30", value: 51500.45 },
-	{ date: "2021-03-31", value: 51000.12 },
-	{ date: "2021-02-28", value: 50500.34 },
-	{ date: "2021-01-31", value: 50000.89 },
+	{ date: '2023-01', value: 62000 },
+  { date: '2023-02', value: 62500 },
+  { date: '2023-03', value: 63000 },
+  { date: '2023-04', value: 64000 },
+  { date: '2023-05', value: 63500 },
+  { date: '2023-06', value: 63200 },
+  { date: '2023-07', value: 64500 },
+  { date: '2023-08', value: 65500 },
+  { date: '2023-09', value: 65000 },
+  { date: '2023-10', value: 66000 },
+  { date: '2023-11', value: 65500 },
+  { date: '2023-12', value: 66500 },
+  { date: '2024-01', value: 66000 },
+  { date: '2024-02', value: 65500 },
+  { date: '2024-03', value: 65000 },
+  { date: '2024-04', value: 64500 },
+  { date: '2024-05', value: 64000 },
+  { date: '2024-06', value: 63500 },
+  { date: '2024-07', value: 63000 },
+  { date: '2024-08', value: 63500 },
+  { date: '2024-09', value: 64000 },
+  { date: '2024-10', value: 63500 },
+  { date: '2024-11', value: 63179.71 },
+  { date: '2024-12', value: 64850.35 },
 ];
+
+function filterData(interval) {
+	const today = new Date("2024-08-30"); // Assuming today is August 30, 2024
+	switch (interval) {
+		case "1d":
+			return allData.filter(
+				(d) => new Date(d.date).getTime() === today.getTime()
+			);
+		case "3d":
+			return allData.filter(
+				(d) => new Date(d.date) >= new Date("2024-08-28")
+			);
+		case "1w":
+			return allData.filter(
+				(d) => new Date(d.date) >= new Date("2024-08-23")
+			);
+		case "1m":
+			return allData.filter(
+				(d) => new Date(d.date) >= new Date("2024-07-30")
+			);
+		case "6m":
+			return allData.filter(
+				(d) => new Date(d.date) >= new Date("2024-03-30")
+			);
+		case "1y":
+			return allData.filter(
+				(d) => new Date(d.date) >= new Date("2023-08-30")
+			);
+		case "max":
+			return allData;
+		default:
+			return [];
+	}
+}
 
 export const data = allData.reverse();
