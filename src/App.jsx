@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import FullScreenIcon from "./assets/fullscreen.svg";
 import CompareIcon from "./assets/compare.svg";
@@ -7,12 +7,58 @@ import GraphLine from "./assets/line.svg";
 import Volume from "./assets/volume.svg";
 import Chart from "./assets/chart.svg";
 import "@vetixy/circular-std";
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+
+// Register chart components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 
 function App() {
     const menuItems = ["Summary", "Chart", "Statistics", "Analysis", "Settings"];
     const rangeBtns = ["1d", "3d", "1w", "1m", "6m", "1y", "max"];
     const [activeTab, setActiveTab] = useState(menuItems[1]);
     const [range, setRange] = useState(rangeBtns[2]);
+    const [chartData, setChartData] = useState(null);
+
+    useEffect(() => {
+        fetch("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=IBM&apikey=demo")
+            .then(response => response.json())
+            .then(data => {
+                const monthlyData = data["Monthly Time Series"];
+                const labels = [];
+                const closePrices = [];
+
+                // Process data to extract dates and close prices
+                let count = 0;
+                for(const date in monthlyData) {
+                    if(count < 12) {
+                        labels.push(date);
+                        closePrices.push(parseFloat(monthlyData[date]["4. close"]));
+                        count++;
+                    } else {
+                        break;
+                    }
+                }
+
+                // Reverse to have chronological order
+                labels.reverse();
+                closePrices.reverse();
+
+                setChartData({
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "IBM Stock Price (Monthly Close)",
+                            data: closePrices,
+                            borderColor: "#4B40EE",
+                            backgroundColor: "rgba(75, 192, 192, 0.2)",
+                            fill: true,
+                        },
+                    ],
+                });
+            });
+    }, []);
 
 	return (
 		<div className="mx-auto pt-[60px] pl-[60px] w-[1000px] h-[789px] top-[2px] left-[6px]">
@@ -71,8 +117,22 @@ function App() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-[20px]">
+                    {/* <div className="chart-area border-l-[1px] border-b-[1px] border-r-[1px]">
+                        <div className="mt-[20px] flex flex-col">
+                            <div className="relative">
+                                <img src={GraphFill} alt="" className="w-full" />
+                                <img src={GraphLine} alt="" className="w-full absolute top-0 left-0" />
+                            </div>
+                            <div className="-translate-y-14">
+                                <img src={Volume} alt="" className="w-full"/>
+                            </div>
+                        </div>
+                    </div> */}
+                    {/* <div className="mt-[20px]">
                         <img src={Chart} alt=""></img>
+                    </div> */}
+                    <div className="chart-area mt-[20px]">
+                        {chartData ? <Line data={chartData} options={{ responsive: true }} /> : <p>Loading chart...</p>}
                     </div>
                 </div>
                 :
