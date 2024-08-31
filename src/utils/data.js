@@ -1,30 +1,3 @@
-// export const data = [
-// 	{ date: "2023-01", value: 62000 },
-// 	{ date: "2023-02", value: 62500 },
-// 	{ date: "2023-03", value: 63000 },
-// 	{ date: "2023-04", value: 64000 },
-// 	{ date: "2023-05", value: 63500 },
-// 	{ date: "2023-06", value: 63200 },
-// 	{ date: "2023-07", value: 64500 },
-// 	{ date: "2023-08", value: 65500 },
-// 	{ date: "2023-09", value: 65000 },
-// 	{ date: "2023-10", value: 66000 },
-// 	{ date: "2023-11", value: 65500 },
-// 	{ date: "2023-12", value: 66500 },
-// 	{ date: "2024-01", value: 66000 },
-// 	{ date: "2024-02", value: 65500 },
-// 	{ date: "2024-03", value: 65000 },
-// 	{ date: "2024-04", value: 64500 },
-// 	{ date: "2024-05", value: 64000 },
-// 	{ date: "2024-06", value: 63500 },
-// 	{ date: "2024-07", value: 63000 },
-// 	{ date: "2024-08", value: 63500 },
-// 	{ date: "2024-09", value: 64000 },
-// 	{ date: "2024-10", value: 63500 },
-// 	{ date: "2024-12", value: 64850.35 },
-// 	{ date: "2024-11", value: 63179.71 },
-// ];
-
 export const data = [
     { "date": "2023-08-31", "value": 62145.78 },
     { "date": "2023-09-30", "value": 62578.12 },
@@ -74,51 +47,14 @@ export const data = [
     { "date": "2024-08-30", "value": 62678.56 },
     { "date": "2024-08-30", "value": 62678.56 },
     { "date": "2024-08-30", "value": 62715.21 },
-    { "date": "2024-08-31", "value": 62874.23 },
-    { "date": "2024-08-31", "value": 62915.47 },
-    { "date": "2024-08-31", "value": 62821.36 },
-    { "date": "2024-08-31", "value": 62790.18 },
-    { "date": "2024-08-31", "value": 62905.82 },
-    { "date": "2024-08-31", "value": 62874.23 },
-    { "date": "2024-08-31", "value": 62874.23 },
-    { "date": "2024-08-31", "value": 62845.32 }
+    { "date": "2024-08-30", "value": 62874.23 },
+    { "date": "2024-08-30", "value": 62915.47 },
+    { "date": "2024-08-30", "value": 62821.36 },
+    { "date": "2024-08-30", "value": 63790.18 },
+    { "date": "2024-08-30", "value": 62905.82 },
+    { "date": "2024-08-30", "value": 62874.23 },
+    { "date": "2024-08-30", "value": 63274.23 },
+    { "date": "2024-08-30", "value": 62845.32 }
 ];
-
-function filterData(interval) {
-	const today = new Date("2024-08-30"); // Assuming today is August 30, 2024
-	switch (interval) {
-		case "1d":
-			return data.filter(
-				(d) => new Date(d.date).getTime() === today.getTime()
-			);
-		case "3d":
-			return data.filter(
-				(d) => new Date(d.date) >= new Date("2024-08-28")
-			);
-		case "1w":
-			return data.filter(
-				(d) => new Date(d.date) >= new Date("2024-08-23")
-			);
-		case "1m":
-			return data.filter(
-				(d) => new Date(d.date) >= new Date("2024-07-30")
-			);
-		case "6m":
-			return data.filter(
-				(d) => new Date(d.date) >= new Date("2024-03-30")
-			);
-		case "1y":
-			return data.filter(
-				(d) => new Date(d.date) >= new Date("2023-08-30")
-			);
-		case "max":
-			return data;
-		default:
-			return [];
-	}
-}
-
-console.log(filterData("1w").length);
-console.log(data.length);
 
 // export const data = allData.reverse();

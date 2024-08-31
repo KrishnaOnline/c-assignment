@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import FullScreenIcon from "./assets/fullscreen.svg";
 import CompareIcon from "./assets/compare.svg";
 import "@vetixy/circular-std";
-// import { Line } from "react-chartjs-2";
-// import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import {
 	AreaChart,
 	Area,
@@ -15,54 +13,9 @@ import {
 	Tooltip,
 	ResponsiveContainer,
 } from "recharts";
-import { data } from "./utils/data";
+// import { data } from "./utils/data";
+import { filterData, formatCurrency, getGainLoss/*, getMaxData*/ } from "./utils/helper";
 
-// Register chart components
-// ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-
-// const data = data;
-
-const CustomTooltip = ({ active, payload, label }) => {
-	if (active && payload && payload.length) {
-		return (
-			<div className="bg-[#1E293B] text-white p-2 rounded shadow-lg">
-				<p className="text-sm font-bold">
-					${payload[0].value.toFixed(2)}
-				</p>
-				<p className="text-xs">{label}</p>
-			</div>
-		);
-	}
-	return null;
-};
-
-const CustomizedLabel = ({ x, y, value, index }) => {
-	if (index === data.length - 1) {
-		return (
-			<>
-				<rect
-					x={x - 40}
-					y={y - 25}
-					width={80}
-					height={30}
-					rx={5}
-					fill="#4F46E5"
-				/>
-				<text
-					x={x}
-					y={y - 8}
-					fill="white"
-					fontSize={12}
-					// fontWeight="bold"
-					textAnchor="middle"
-				>
-					${value.toFixed(2)}
-				</text>
-			</>
-		);
-	}
-	return null;
-};
 function App() {
 	const menuItems = [
 		"Summary",
@@ -73,56 +26,62 @@ function App() {
 	];
 	const rangeBtns = ["1d", "3d", "1w", "1m", "6m", "1y", "max"];
 	const [activeTab, setActiveTab] = useState(menuItems[1]);
-	const [range, setRange] = useState(rangeBtns[2]);
-	const [chartData, setChartData] = useState(null);
+	const [range, setRange] = useState(rangeBtns[6]);
+	const [chartData, setChartData] = useState(filterData(range));
 
-	// useEffect(() => {
-	//     fetch("https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=IBM&apikey=demo")
-	//         .then(response => response.json())
-	//         .then(data => {
-	//             const monthlyData = data["Monthly Time Series"];
-	//             const labels = [];
-	//             const closePrices = [];
+    const CustomizedLabel = ({ x, y, value, index }) => {
+        if (index === chartData.length - 1) {
+            return (
+                <>
+                    <rect
+                        x={x - 70}
+                        y={y - 20}
+                        className="/*-translate-x-8*/ current-label"
+                        width={98}
+                        height={33}
+                        rx={5}
+                        fill="#4B40EE"
+                    />
+                    <text
+                        x={x - 20}
+                        y={y + 2}
+                        fill="white"
+                        // fontSize={18}
+                        // fontWeight="bold"
+                        className="current-label-text"
+                        textAnchor="middle"
+                    >
+                        {value.toFixed(2)}
+                    </text>
+                </>
+            );
+        }
+        return null;
+    };
 
-	//             // Process data to extract dates and close prices
-	//             let count = 0;
-	//             for(const date in monthlyData) {
-	//                 if(count < 12) {
-	//                     labels.push((date.split("-"))[2]);
-	//                     closePrices.push(parseFloat(monthlyData[date]["4. close"]));
-	//                     count++;
-	//                 } else {
-	//                     break;
-	//                 }
-	//             }
-
-	//             // Reverse to have chronological order
-	//             labels.reverse();
-	//             closePrices.reverse();
-
-	//             setChartData({
-	//                 labels: labels,
-	//                 datasets: [
-	//                     {
-	//                         label: "IBM Stock Price (Monthly Close)",
-	//                         data: closePrices,
-	//                         borderColor: "#4B40EE",
-	//                         backgroundColor: "#4B40EE",
-	//                         fill: true,
-	//                     },
-	//                 ],
-	//             });
-	//         });
-	// }, []);
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <rect className="px-4 p-2 hover-label">
+                    <text className="hover-label-text">
+                        {payload[0].value.toFixed(2)}
+                    </text>
+                </rect>
+            );
+        }
+        return null;
+    };
 
 	return (
 		<div className="mx-auto pt-[60px] pl-[60px] w-[1000px] h-[789px] top-[2px] left-[6px]">
 			<div className="amount-area w-[326px] h-[122px]">
-				<div className="flex">
-					<p className="amount w-[269px] h-[89px]">63,179.71</p>
-					<p className="currency mt-[17px] ml-[8px]">USD</p>
+				<div className="flex gap-10">
+					<p className="amount w-[269px] h-[89px]">{formatCurrency(chartData[chartData.length-1].value)}</p>
+					<p className="currency mt-[17px] ml-[10px]">USD</p>
 				</div>
-				<p className="gain mt-[5px]">+ 2,161.42 (3.54%)</p>
+				<p className={`${getGainLoss(chartData).status ? "text-[#67BF6B]" : "text-[#C70039]"} gain-loss mt-[5px]`}>
+                    {getGainLoss(chartData).status ? "+" : "-"} {formatCurrency(getGainLoss(chartData).diff.toFixed(2))} ({formatCurrency(getGainLoss(chartData).percent.toFixed(2))}%)
+                </p>
 			</div>
 			<div className="menu-bar flex h-[1000px] flex-col mt-[30px]">
 				<div className="flex">
@@ -150,31 +109,25 @@ function App() {
 				<div className="h-[3px] bg-[#EFF1F3]"></div>
 				{/* <div className="h-[3px] w-full bg-[#EFF1F3] -z-10 -mt-[3px]"></div> */}
 			</div>
-			{/* <div className="chart-area mt-[20px] flex flex-col">
-                <div className="relative">
-                    <img src={GraphFill} alt="" className="absolute top-0 left-0" />
-                    <img src={GraphLine} alt="" className="absolute top-0 left-0" />
-                </div>
-                <div className="mt-4">
-                    <img src={Volume} alt="" />
-                </div>
-            </div> */}
 			{activeTab === "Chart" ? (
 				<div>
 					<div className="flex gap-8 mt-[50px]">
-						<div className="flex items-center gap-2">
+						<button className="flex items-center gap-2">
 							<img src={FullScreenIcon} alt=""></img>
 							<p className="actions">Fullscreen</p>
-						</div>
-						<div className="flex items-center gap-2">
+						</button>
+						<button className="flex items-center gap-2">
 							<img src={CompareIcon} alt=""></img>
 							<p className="actions">Compare</p>
-						</div>
+						</button>
 						<div>
 							<div className="">
 								{rangeBtns.map((i) => (
 									<button
-										onClick={() => setRange(i)}
+										onClick={() => {
+                                            setRange(i);
+                                            setChartData(filterData(i));
+                                        }}
 										key={i}
 										className={`range-items cursor-pointer mr-1`}
 									>
@@ -192,34 +145,10 @@ function App() {
 							</div>
 						</div>
 					</div>
-					{/* <div className="chart-area border-l-[1px] border-b-[1px] border-r-[1px]">
-                        <div className="mt-[20px] flex flex-col">
-                            <div className="relative">
-                                <img src={GraphFill} alt="" className="w-full" />
-                                <img src={GraphLine} alt="" className="w-full absolute top-0 left-0" />
-                            </div>
-                            <div className="-translate-y-14">
-                                <img src={Volume} alt="" className="w-full"/>
-                            </div>
-                        </div>
-                    </div> */}
-					{/* <div className="mt-[20px]">
-                        <img src={Chart} alt=""></img>
-                    </div> */}
-					{/* <div className="chart-area mt-[20px]">
-						{chartData ? (
-							<Line
-								data={chartData}
-								options={{ responsive: true }}
-							/>
-						) : (
-							<p>Loading chart...</p>
-						)}
-					</div> */}
 					<div className="chart-area mt-[20px] w-full h-[400px] bg-white">
 						<ResponsiveContainer width="100%" height="100%">
 							<AreaChart
-								data={data}
+								data={chartData}
 								margin={{
 									top: 10,
 									right: 30,
@@ -246,14 +175,14 @@ function App() {
 										"dataMax + 1000",
 									]}
 									tickFormatter={(value) =>
-										`$${(value / 1000).toFixed(0)}k`
+										`${(value / 1000).toFixed(0)}k`
 									}
 									tick={{ fontSize: 12, fill: "#6b7280" }}
 								/>
 								<Tooltip content={<CustomTooltip />} />
 								<defs>
 									<linearGradient
-										id="colorValue"
+										id="colorVal"
 										x1="0"
 										y1="0"
 										x2="0"
@@ -261,13 +190,13 @@ function App() {
 									>
 										<stop
 											offset="5%"
-											stopColor="#4F46E5"
-											stopOpacity={0.1}
+											stopColor="#E8E7FF"
+											stopOpacity={0.9}
 										/>
 										<stop
 											offset="95%"
-											stopColor="#4F46E5"
-											stopOpacity={0.01}
+											stopColor="#E8E7FF"
+											stopOpacity={0.1}
 										/>
 									</linearGradient>
 								</defs>
@@ -275,7 +204,7 @@ function App() {
 									type="linear"
 									dataKey="value"
 									stroke="#4F46E5"
-									fill="url(#colorValue)"
+									fill="url(#colorVal)"
 									strokeWidth={2}
 									isAnimationActive={false}
 									label={<CustomizedLabel />}

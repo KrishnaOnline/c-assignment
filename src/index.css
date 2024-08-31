@@ -44,8 +44,8 @@ body {
     opacity: 0px;
 }
 
-.gain {
-    color: #67BF6B;
+.gain-loss {
+    /* color: #67BF6B; */
     font-size: 18px;
     font-weight: 400;
     line-height: 22.77px;
@@ -111,10 +111,58 @@ body {
     width: 800px;
     height: 343px;
     top: 386px;
-    left: 60px;
+    /* left: 60px; */
     gap: 0px;
-    border-radius: 5px 0px 0px 0px;
+    border-radius: 5px;
     opacity: 0px;
+}
+
+.current-label {
+    width: 98px;
+    height: 33px;
+    top: 520px;
+    left: 790px;
+    gap: 0px;
+    border-radius: 5px;
+    opacity: 0px;
+}
+
+.current-label-text {
+    width: 70px;
+    height: 23px;
+    top: 525px;
+    left: 804px;
+    gap: 0px;
+    opacity: 0px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22.77px;
+    text-align: left;
+}
+
+.hover-label {
+    background-color: #1A243A;
+    color: #FFFFFF;
+    width: 109px;
+    height: 33px;
+    top: 431px;
+    left: 790px;
+    gap: 0px;
+    border-radius: 5px;
+    opacity: 0px;
+}
+
+.hover-label-text {
+    width: 81px;
+    height: 23px;
+    top: 436px;
+    left: 804px;
+    gap: 0px;
+    opacity: 0px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22.77px;
+    text-align: left;
 }
 
 /* :root {
