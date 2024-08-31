@@ -6,6 +6,8 @@ import CompareIcon from "./assets/compare.svg";
 import "@vetixy/circular-std";
 import {
 	AreaChart,
+    BarChart,
+    Bar,
 	Area,
 	XAxis,
 	YAxis,
@@ -158,26 +160,16 @@ function App() {
 							>
 								<CartesianGrid
 									strokeDasharray="3 3"
-									vertical={false}
+									vertical={true}
+                                    horizontal={false}
 									stroke="#e5e7eb"
 								/>
 								<XAxis
-									dataKey="date"
-									axisLine={false}
-									tickLine={false}
-									tick={{ fontSize: 12, fill: "#6b7280" }}
+                                    hide={true}
 								/>
 								<YAxis
-									axisLine={false}
-									tickLine={false}
-									domain={[
-										"dataMin - 1000",
-										"dataMax + 1000",
-									]}
-									tickFormatter={(value) =>
-										`${(value / 1000).toFixed(0)}k`
-									}
-									tick={{ fontSize: 12, fill: "#6b7280" }}
+                                    domain={[61000, 65000]}
+                                    hide={true}
 								/>
 								<Tooltip content={<CustomTooltip />} />
 								<defs>
@@ -210,6 +202,33 @@ function App() {
 									label={<CustomizedLabel />}
 								/>
 							</AreaChart>
+                            <div className="w-[800px] h-[31.34px]">
+                                <BarChart
+                                    width={740}
+                                    height={31.34}
+                                    data={chartData}
+                                    margin={{
+                                        top: 0,
+                                        right: 0,
+                                        left: 0,
+                                        bottom: 0,
+                                    }}
+                                >
+                                    <XAxis
+                                    hide={true}
+									// dataKey="date"
+									// axisLine={false}
+									// tickLine={false}
+									// tick={{ fontSize: 12, fill: "#6b7280" }}
+								/>
+                                    <XAxis hide={true}/>
+                                    <YAxis
+                                        domain={[61000, 65000]}
+                                        hide={true}
+                                    />
+                                    <Bar dataKey="value" fill="#E6E8EB" />
+                                </BarChart>
+                                </div>
 						</ResponsiveContainer>
 					</div>
 				</div>
