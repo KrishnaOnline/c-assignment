@@ -147,10 +147,11 @@ function App() {
 							</div>
 						</div>
 					</div>
-					<div className="chart-area mt-[20px] w-full h-[400px] bg-white">
+					<div className="chart-area border border-t-0 border-b-0 border-r-0 mt-[30px] w-full h-[400px] bg-white">
 						<ResponsiveContainer width="100%" height="100%">
 							<AreaChart
 								data={chartData}
+                                width={839}
 								margin={{
 									top: 10,
 									right: 30,
@@ -195,16 +196,16 @@ function App() {
 								<Area
 									type="linear"
 									dataKey="value"
-									stroke="#4F46E5"
+									stroke="#4B40EE"
 									fill="url(#colorVal)"
 									strokeWidth={2}
 									isAnimationActive={false}
 									label={<CustomizedLabel />}
 								/>
 							</AreaChart>
-                            <div className="w-[800px] h-[31.34px]">
+                            <div className="w-[800px] border border-t-0 border-r-0 h-[31.34px]">
                                 <BarChart
-                                    width={740}
+                                    width={810}
                                     height={31.34}
                                     data={chartData}
                                     margin={{
@@ -215,13 +216,12 @@ function App() {
                                     }}
                                 >
                                     <XAxis
-                                    hide={true}
-									// dataKey="date"
-									// axisLine={false}
-									// tickLine={false}
-									// tick={{ fontSize: 12, fill: "#6b7280" }}
-								/>
-                                    <XAxis hide={true}/>
+                                        hide={true}
+                                        dataKey="date"
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fontSize: 12, fill: "#6b7280" }}
+								    />
                                     <YAxis
                                         domain={[61000, 65000]}
                                         hide={true}
