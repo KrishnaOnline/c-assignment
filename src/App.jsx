@@ -39,13 +39,13 @@ const CustomTooltip = ({ active, payload, label }) => {
 const CustomizedLabel = ({ x, y, value, index }) => {
 	if (index === data.length - 1) {
 		return (
-			<g>
+			<>
 				<rect
 					x={x - 40}
 					y={y - 25}
 					width={80}
-					height={24}
-					rx={12}
+					height={30}
+					rx={5}
 					fill="#4F46E5"
 				/>
 				<text
@@ -53,12 +53,12 @@ const CustomizedLabel = ({ x, y, value, index }) => {
 					y={y - 8}
 					fill="white"
 					fontSize={12}
-					fontWeight="bold"
+					// fontWeight="bold"
 					textAnchor="middle"
 				>
 					${value.toFixed(2)}
 				</text>
-			</g>
+			</>
 		);
 	}
 	return null;
