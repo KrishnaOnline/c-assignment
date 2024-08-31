@@ -14,7 +14,7 @@ function App() {
 	const [range, setRange] = useState(rangeBtns[6]);
 	const [chartData, setChartData] = useState(filterData(range));
 
-    const CustomizedLabel = ({x, y, value, index}) => {
+    const CustomLabel = ({x, y, value, index}) => {
         if(index === chartData.length-1) {
             return (
                 <>
@@ -108,7 +108,7 @@ function App() {
 										<stop offset="95%" stopColor="#E8E7FF" stopOpacity={0.1}/>
 									</linearGradient>
 								</defs>
-								<Area type="linear" dataKey="value" stroke="#4B40EE" fill="url(#colorVal)" strokeWidth={2} label={<CustomizedLabel/>}/>
+								<Area type="linear" dataKey="value" stroke="#4B40EE" fill="url(#colorVal)" strokeWidth={2} label={<CustomLabel/>}/>
 							</AreaChart>
                             <div className="w-[800px] border border-t-0 border-r-0 h-[31.34px]">
                                 <BarChart width={810} height={31.34} data={chartData} margin={{top: 0, right:0, left:0, bottom:0}}>
