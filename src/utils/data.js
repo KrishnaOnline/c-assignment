@@ -41,7 +41,7 @@ export const data = [
     { "date": "2024-08-26", "value": 62635.89 },
     { "date": "2024-08-27", "value": 62845.22 },
     { "date": "2024-08-28", "value": 63255.18 },
-    { "date": "2024-08-29", "value": 63525.45 },
+    { "date": "2024-08-29", "value": 63825.45 },
     { "date": "2024-08-29", "value": 63525.45 },
     { "date": "2024-08-29", "value": 63485.92 },
     { "date": "2024-08-30", "value": 62678.56 },
@@ -56,5 +56,3 @@ export const data = [
     { "date": "2024-08-30", "value": 63274.23 },
     { "date": "2024-08-30", "value": 62845.32 }
 ];
-
-// export const data = allData.reverse();
