@@ -56,10 +56,10 @@ function App() {
 				<div className="flex">
 					{menuItems.map((i) => (
 						<button className={`menu-items cursor-pointer mr-5`} onClick={() => setActiveTab(i)} key={i}>
-							<div className={`${activeTab === i ? "active-tab" : ""} text-center`}>
+							<div className={`${activeTab===i ? "active-tab" : ""} text-center`}>
 								{i}
 							</div>
-							<div className={`${activeTab === i ? "bg-[#4B40EE]" : ""} px-10 h-[3px] mt-4`}></div>
+							<div className={`${activeTab===i ? "bg-[#4B40EE]" : ""} px-10 h-[3px] mt-4`}></div>
 						</button>
 					))}
 				</div>
@@ -111,7 +111,7 @@ function App() {
 								<Area type="linear" dataKey="value" stroke="#4B40EE" fill="url(#colorVal)" strokeWidth={2} label={<CustomLabel/>}/>
 							</AreaChart>
                             <div className="w-[800px] border border-t-0 border-r-0 h-[31.34px]">
-                                <BarChart width={810} height={31.34} data={chartData} margin={{top: 0, right:0, left:0, bottom:0}}>
+                                <BarChart width={810} height={31.34} data={chartData} margin={{top:0, right:0, left:0, bottom:0}}>
                                     <XAxis hide={true}/>
                                     <YAxis domain={[61200, 65000]} hide={true}/>
                                     <Bar dataKey="value" fill="#E6E8EB" />
