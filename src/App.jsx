@@ -42,7 +42,7 @@ function App() {
     };
 
 	return (
-		<div className="mx-auto pt-[25px] pl-[60px] w-[1000px] h-[789px] top-[2px] left-[6px]">
+		<div className="mx-auto pt-[30px] pl-[60px] w-[1000px] h-[789px] top-[2px] left-[6px]">
 			<div className="amount-area w-[326px] h-[122px]">
 				<div className="flex gap-10">
 					<p className="amount w-[269px] h-[89px]">{formatCurrency(chartData[chartData.length-1].value)}</p>
